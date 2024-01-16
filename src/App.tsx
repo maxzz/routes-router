@@ -1,9 +1,11 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Root } from "./components/1-root";
+import { ErrorPage } from "./components/2-error";
 
 const router = createBrowserRouter([{
     path: "/",
-    element: <div className="h-screen bg-sky-300">123</div>,
-    errorElement: <div>404</div>,
+    element: <Root />,
+    errorElement: <ErrorPage />,
 }]);
 
 export function App() {
