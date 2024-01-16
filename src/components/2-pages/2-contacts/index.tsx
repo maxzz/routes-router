@@ -1,6 +1,6 @@
 export function Contacts() {
     return (
-        <div>
+        <div className="bg-slate-600">
             Contacts
         </div>
     );

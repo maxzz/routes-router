@@ -1,6 +1,6 @@
 export function Books() {
     return (
-        <div>
+        <div className="bg-slate-700">
             Books
         </div>
     );

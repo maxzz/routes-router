@@ -1,6 +1,6 @@
 export function About() {
     return (
-        <div>
+        <div className="bg-slate-500">
             About
         </div>
     );
