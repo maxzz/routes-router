@@ -6,6 +6,10 @@ const router = createBrowserRouter([{
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
+    children: [
+        { path: "/about", element: <div>About</div> },
+        { path: "/contact", element: <div>Contact</div> },
+    ],
 }]);
 
 export function App() {
