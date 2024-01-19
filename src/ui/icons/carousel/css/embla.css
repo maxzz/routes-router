@@ -110,36 +110,40 @@
 
 /* dots */
 
-.embla__dot {
-    -webkit-appearance: none;
-    background-color: transparent;
-    touch-action: manipulation;
-    display: inline-flex;
-    text-decoration: none;
-    cursor: pointer;
-    border: 0;
-    padding: 0;
-    margin: 0;
-}
-
-.embla__dots {
-    z-index: 1;
-    bottom: 1.6rem;
+/* .embla__dots {
     position: absolute;
     left: 0;
     right: 0;
+    bottom: 1.6rem;
+    
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    z-index: 1;
+} */
+
+.embla__dot {
+    appearance: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    
+    background-color: transparent;
+    touch-action: manipulation;
+    text-decoration: none;
+    cursor: pointer;
+
+    display: inline-flex;
 }
 
 .embla__dot {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
     width: 2.4rem;
     height: 2.4rem;
+    
     display: flex;
     align-items: center;
-    margin-right: 0.75rem;
-    margin-left: 0.75rem;
 }
 
 .embla__dot:after {

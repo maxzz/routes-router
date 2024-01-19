@@ -1,12 +1,14 @@
 import { useCallback } from 'react';
 import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 import { DotButton, useDotButton } from './EmblaCarouselDotButton';
 import { PrevButton, NextButton, usePrevNextButtons } from './EmblaCarouselArrowButtons';
-import Autoplay from 'embla-carousel-autoplay';
 import { imageByIndex } from './images/imageByIndex';
+
 //import "./css/base.css";
 import "./css/embla.css";
+import { classNames } from '@/utils/classnames';
 // import "./css/sandbox.css";
 
 type EmblaCarouselProps = {
@@ -60,10 +62,14 @@ function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
                 <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
             </div>
 
-            <div className="embla__dots">
+            <div className="absolute left-0 right-0 bottom-6 text-red-500 flex items-center justify-center z-10"> {/* embla__dots */}
                 {scrollSnaps.map((_, index) => (
                     <DotButton
-                        className={'embla__dot'.concat(index === selectedIndex ? ' embla__dot--selected' : '')}
+                        className={classNames(
+                            'embla__dot',
+                            index === selectedIndex ? ' embla__dot--selected' : ''
+                        )}
+                        // className={'embla__dot'.concat(index === selectedIndex ? ' embla__dot--selected' : '')}
                         onClick={() => onDotButtonClick(index)}
                         key={index}
                     />
