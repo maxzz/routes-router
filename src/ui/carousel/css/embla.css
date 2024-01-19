@@ -75,7 +75,7 @@
     align-items: center;
 } */
 
-.embla__button {
+/* .embla__button {
     appearance: none;
     display: inline-flex;
     margin: 0;
@@ -89,14 +89,15 @@
 }
 
 .embla__button {
-    z-index: 1;
+    width: 4rem;
+    height: 4rem;
     color: var(--background-site);
+
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    width: 4rem;
-    height: 4rem;
+    z-index: 1;
 }
 
 .embla__button:disabled {
@@ -106,7 +107,7 @@
 .embla__button__svg {
     width: 65%;
     height: 65%;
-}
+} */
 
 /* dots */
 
