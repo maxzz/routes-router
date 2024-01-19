@@ -15,9 +15,7 @@ export function useDotButton(emblaApi: EmblaCarouselType | undefined, onButtonCl
         (index: number) => {
             if (!emblaApi) return;
             emblaApi.scrollTo(index);
-            if (onButtonClick) {
-                onButtonClick(emblaApi);
-            }
+            onButtonClick?.(emblaApi);
         },
         [emblaApi, onButtonClick]
     );

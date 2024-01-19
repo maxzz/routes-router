@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useCallback, useEffect, useState } from 'react';
+import { ButtonHTMLAttributes, DetailedHTMLProps, PropsWithChildren, useCallback, useEffect, useState } from 'react';
 import { EmblaCarouselType } from 'embla-carousel';
 
 type UsePrevNextButtonsType = {
@@ -16,7 +16,7 @@ export const usePrevNextButtons = (emblaApi: EmblaCarouselType | undefined, onBu
         () => {
             if (!emblaApi) return;
             emblaApi.scrollPrev();
-            if (onButtonClick) onButtonClick(emblaApi);
+            onButtonClick?.(emblaApi);
         }, [emblaApi, onButtonClick]
     );
 
@@ -24,7 +24,7 @@ export const usePrevNextButtons = (emblaApi: EmblaCarouselType | undefined, onBu
         () => {
             if (!emblaApi) return;
             emblaApi.scrollNext();
-            if (onButtonClick) onButtonClick(emblaApi);
+            onButtonClick?.(emblaApi);
         }, [emblaApi, onButtonClick]
     );
 
@@ -52,10 +52,9 @@ export const usePrevNextButtons = (emblaApi: EmblaCarouselType | undefined, onBu
     };
 };
 
-type ButtonProps = PropsWithChildren<React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>>;
+type ButtonProps = PropsWithChildren<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>>;
 
-export function PrevButton(props: ButtonProps) {
-    const { children, ...rest } = props;
+export function PrevButton({ children, ...rest }: ButtonProps) {
     return (
         <button className="embla__button embla__button--prev" type="button" {...rest}>
             <svg className="embla__button__svg" viewBox="0 0 532 532">
@@ -68,8 +67,7 @@ export function PrevButton(props: ButtonProps) {
     );
 }
 
-export function NextButton(props: ButtonProps) {
-    const { children, ...restProps } = props;
+export function NextButton({ children, ...restProps }: ButtonProps) {
     return (
         <button className="embla__button embla__button--next" type="button" {...restProps}>
             <svg className="embla__button__svg" viewBox="0 0 532 532">
