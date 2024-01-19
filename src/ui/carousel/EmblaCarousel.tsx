@@ -4,11 +4,11 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay, { AutoplayType } from 'embla-carousel-autoplay';
 import { DotButton, useDotButton } from './EmblaCarouselDotButton';
 import { PrevButton, NextButton, usePrevNextButtons } from './EmblaCarouselArrowButtons';
-import { imageByIndex } from './images/imageByIndex';
+import { imageUrlByIndex } from './images/imageByIndex';
+import { classNames } from '@/utils/classnames';
 
 //import "./css/base.css";
-import "./css/embla.css";
-import { classNames } from '@/utils/classnames';
+//import "./css/embla.css";
 // import "./css/sandbox.css";
 
 type EmblaCarouselProps = {
@@ -17,10 +17,10 @@ type EmblaCarouselProps = {
 };
 
 function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
-    const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()]);
+    const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay({stopOnInteraction: true, delay: 25000})]);
 
     const onButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
-        const { autoplay } = emblaApi.plugins()['autoplay'] as AutoplayType;
+        const { autoplay } = emblaApi.plugins() as AutoplayType;
         if (autoplay?.options.stopOnInteraction) {
             autoplay.stop();
         }
@@ -46,7 +46,7 @@ function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
                             </div>
                             <img
                                 className="block w-full h-[var(--slide-height)] object-cover" // embla__slide__img
-                                src={imageByIndex(index)}
+                                src={imageUrlByIndex(index)}
                                 alt="Your alt text"
                             />
                         </div>

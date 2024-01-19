@@ -7,6 +7,6 @@ import image2 from './slide-2-tuolumne-bridge.jpg'; // https://www.yosemitehikes
 import image3 from './slide-3-corlieu-falls.jpg'; // https://www.yosemitehikes.com/toys/wallpaper/corlieu-falls.htm //G: 'image 1200 x 800'
 import image4 from './slide-4-tuolumne-meadows-lembert-dome.jpg'; // https://www.yosemitehikes.com/tioga-road/tuolumne-meadows/lembert-dome.htm
 
-export const images: string[] = [image1, image2, image3, image4];
+const allImages: string[] = [image1, image2, image3, image4];
 
-export const imageByIndex = (index: number): string => images[index % images.length];
+export const imageUrlByIndex = (idx: number): string => allImages[idx % allImages.length];

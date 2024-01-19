@@ -1,5 +1,5 @@
 import { EmblaOptionsType } from "embla-carousel";
-import EmblaCarousel from "@/ui/icons/carousel/EmblaCarousel";
+import EmblaCarousel from "@/ui/carousel/EmblaCarousel";
 import { Link } from "react-router-dom";
 
 const OPTIONS: EmblaOptionsType = { loop: true };
