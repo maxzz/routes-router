@@ -5,7 +5,9 @@ import { DotButton, useDotButton } from './EmblaCarouselDotButton';
 import { PrevButton, NextButton, usePrevNextButtons } from './EmblaCarouselArrowButtons';
 import Autoplay from 'embla-carousel-autoplay';
 import { imageByIndex } from './images/imageByIndex';
+import "./css/base.css";
 import "./css/embla.css";
+import "./css/sandbox.css";
 
 type EmblaCarouselProps = {
     slides: number[];
