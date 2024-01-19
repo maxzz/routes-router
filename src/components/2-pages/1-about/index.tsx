@@ -13,10 +13,7 @@ export function About() {
                 About
                 <Link to="/">Back</Link>
 
-                <section className="sandbox__carousel">
-                    <EmblaCarousel slides={SLIDES} options={OPTIONS} />
-                </section>
-
+                <EmblaCarousel slides={SLIDES} options={OPTIONS} />
             </div>
         </div>
     );
