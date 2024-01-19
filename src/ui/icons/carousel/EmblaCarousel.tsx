@@ -5,14 +5,14 @@ import { DotButton, useDotButton } from './EmblaCarouselDotButton';
 import { PrevButton, NextButton, usePrevNextButtons } from './EmblaCarouselArrowButtons';
 import Autoplay from 'embla-carousel-autoplay';
 import { imageByIndex } from './images/imageByIndex';
+import "./css/embla.css";
 
-type PropType = {
+type EmblaCarouselProps = {
     slides: number[];
     options?: EmblaOptionsType;
 };
 
-const EmblaCarousel: React.FC<PropType> = (props) => {
-    const { slides, options } = props;
+function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
     const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()]);
 
     const onButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
@@ -31,10 +31,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     );
 
     const {
-        prevBtnDisabled,
-        nextBtnDisabled,
-        onPrevButtonClick,
-        onNextButtonClick
+        prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick
     } = usePrevNextButtons(emblaApi, onButtonClick);
 
     return (
@@ -49,8 +46,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                             <img
                                 className="embla__slide__img"
                                 src={imageByIndex(index)}
-                                alt="Your alt text"
-                            />
+                                alt="Your alt text" />
                         </div>
                     ))}
                 </div>
@@ -66,14 +62,11 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                     <DotButton
                         key={index}
                         onClick={() => onDotButtonClick(index)}
-                        className={'embla__dot'.concat(
-                            index === selectedIndex ? ' embla__dot--selected' : ''
-                        )}
-                    />
+                        className={'embla__dot'.concat(index === selectedIndex ? ' embla__dot--selected' : '')} />
                 ))}
             </div>
         </div>
     );
-};
+}
 
 export default EmblaCarousel;
