@@ -26,16 +26,16 @@ export function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
     const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } = usePrevNextButtons(api, onButtonClick);
 
     return (
-        <div className="relative p-6 [--slide-spacing:1rem] [--slide-size:100%] [--slide-height:19rem] text-gray-400/70"> {/* embla */}
-            <div className="overflow-hidden" ref={emblaRef}> {/* embla__viewport */}
-                <div className="ml-[calc(var(--slide-spacing)*-1)] flex [backface-visibility:hidden] [touch-action:pan-y]"> {/* embla__container */}
+        <div className="relative p-6 [--slide-spacing:1rem] [--slide-size:100%] [--slide-height:19rem] text-gray-400/70">
+            <div className="overflow-hidden" ref={emblaRef}>
+                <div className="ml-[calc(var(--slide-spacing)*-1)] flex [backface-visibility:hidden] [touch-action:pan-y]">
                     {slides.map((imgSrc, index) => (
-                        <div className="relative pl-[var(--slide-spacing)] min-w-0 [flex:_0_0_var(--slide-size)]" key={index}> {/* embla__slide */}
-                            <div className="absolute right-4 top-4 w-12 h-12 leading-[2.8rem] font-extrabold text-center bg-gray-300/30 rounded-full"> {/* embla__slide__number */}
+                        <div className="relative pl-[var(--slide-spacing)] min-w-0 [flex:_0_0_var(--slide-size)]" key={index}>
+                            <div className="absolute right-4 top-4 w-12 h-12 leading-[2.8rem] font-extrabold text-center bg-gray-300/30 rounded-full">
                                 <span>{index + 1}</span>
                             </div>
                             <img
-                                className="block w-full h-[var(--slide-height)] object-cover" // embla__slide__img
+                                className="block w-full h-[var(--slide-height)] object-cover"
                                 src={imageUrlByIndex(slides, index)}
                                 alt="Your alt text"
                             />
@@ -44,21 +44,21 @@ export function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
                 </div>
             </div>
 
-            <div className="absolute left-6 top-1/2 -translate-y-1/2 flex items-center"> {/* embla__buttons */}
+            <div className="absolute left-6 top-1/2 -translate-y-1/2 flex items-center">
                 <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled}>
-                    <IconPrev className="w-8 h-8 fill-current" /> {/* "embla__button__svg" */}
+                    <IconPrev className="w-8 h-8 fill-current" />
                 </PrevButton>
                 <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled}>
-                    <IconNext className="w-8 h-8 fill-current" /> {/* "embla__button__svg" */}
+                    <IconNext className="w-8 h-8 fill-current" />
                 </NextButton>
             </div>
 
-            <div className="absolute left-0 right-0 bottom-8 text-red-500 flex items-center justify-center gap-x-1 z-10"> {/* embla__dots */}
+            <div className="absolute left-0 right-0 bottom-8 text-red-500 flex items-center justify-center gap-x-1 z-10">
                 {scrollSnaps.map((_, index) => (
                     <DotButton
                         className={classNames(
-                            'w-6 h-1 inline-flex items-center rounded', // 'embla__dot'
-                            index === selectedIndex ? 'bg-sky-500' : 'bg-sky-100' // 'embla__dot--selected'
+                            'w-6 h-1 inline-flex items-center rounded',
+                            index === selectedIndex ? 'bg-sky-500' : 'bg-sky-100'
                         )}
                         onClick={() => onDotButtonClick(index)}
                         key={index}
@@ -77,7 +77,7 @@ type ButtonProps = PropsWithChildren<DetailedHTMLProps<ButtonHTMLAttributes<HTML
 
 export function PrevButton({ children, ...rest }: ButtonProps) {
     return (
-        <button className="" type="button" {...rest}> {/* embla__button embla__button--prev */}
+        <button className="" type="button" {...rest}>
             {children}
         </button>
     );
@@ -85,7 +85,7 @@ export function PrevButton({ children, ...rest }: ButtonProps) {
 
 export function NextButton({ children, ...restProps }: ButtonProps) {
     return (
-        <button className="" type="button" {...restProps}> {/* embla__button embla__button--next */}
+        <button className="" type="button" {...restProps}>
             {children}
         </button>
     );
