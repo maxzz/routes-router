@@ -1,10 +1,9 @@
 import { useCallback } from 'react';
-import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel';
+import { EmblaOptionsType, EmblaCarouselType as CarouselApi } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay, { AutoplayType } from 'embla-carousel-autoplay';
 import { DotButton, useDotButton } from './EmblaCarouselDotButton';
 import { PrevButton, NextButton, usePrevNextButtons } from './EmblaCarouselArrowButtons';
-import { imageUrlByIndex } from './images/imageByIndex';
 import { classNames } from '@/utils/classnames';
 
 //import "./css/base.css";
@@ -12,41 +11,39 @@ import { classNames } from '@/utils/classnames';
 // import "./css/sandbox.css";
 
 type EmblaCarouselProps = {
-    slides: number[];
+    slides: string[];
     options?: EmblaOptionsType;
 };
 
-function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
-    const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay({stopOnInteraction: true, delay: 25000})]);
+export function imageUrlByIndex<T>(arr: T[], idx: number): T {
+    return arr[idx % arr.length];
+}
 
-    const onButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
-        const { autoplay } = emblaApi.plugins() as AutoplayType;
+export function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
+    const [emblaRef, api] = useEmblaCarousel(options, [Autoplay({ stopOnInteraction: true, delay: 25000 })]);
+
+    const onButtonClick = useCallback((api: CarouselApi) => {
+        const { autoplay } = api.plugins() as AutoplayType;
         if (autoplay?.options.stopOnInteraction) {
             autoplay.stop();
         }
     }, []);
 
-    const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(
-        emblaApi,
-        onButtonClick
-    );
-
-    const {
-        prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick
-    } = usePrevNextButtons(emblaApi, onButtonClick);
+    const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(api, onButtonClick);
+    const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } = usePrevNextButtons(api, onButtonClick);
 
     return (
         <div className="relative p-6 [--slide-spacing:1rem] [--slide-size:100%] [--slide-height:19rem] text-gray-400/70"> {/* embla */}
             <div className="overflow-hidden" ref={emblaRef}> {/* embla__viewport */}
                 <div className="ml-[calc(var(--slide-spacing)*-1)] flex [backface-visibility:hidden] [touch-action:pan-y]"> {/* embla__container */}
-                    {slides.map((index) => (
+                    {slides.map((imgSrc, index) => (
                         <div className="relative pl-[var(--slide-spacing)] min-w-0 [flex:_0_0_var(--slide-size)]" key={index}> {/* embla__slide */}
                             <div className="absolute right-4 top-4 w-12 h-12 leading-[2.8rem] font-extrabold text-center bg-gray-300/30 rounded-full"> {/* embla__slide__number */}
                                 <span>{index + 1}</span>
                             </div>
                             <img
                                 className="block w-full h-[var(--slide-height)] object-cover" // embla__slide__img
-                                src={imageUrlByIndex(index)}
+                                src={imageUrlByIndex(slides, index)}
                                 alt="Your alt text"
                             />
                         </div>
@@ -74,5 +71,3 @@ function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
         </div>
     );
 }
-
-export default EmblaCarousel;

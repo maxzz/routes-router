@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps, PropsWithChildren, useCallback, useEffect, useState } from 'react';
-import { EmblaCarouselType } from 'embla-carousel';
+import { EmblaCarouselType as CarouselApi } from 'embla-carousel';
 
 type DotButtonProps = PropsWithChildren<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>>;
 
@@ -17,31 +17,31 @@ type UseDotButtonType = {
     onDotButtonClick: (index: number) => void;
 };
 
-export function useDotButton(emblaApi: EmblaCarouselType | undefined, onButtonClick?: (emblaApi: EmblaCarouselType) => void): UseDotButtonType {
+export function useDotButton(api: CarouselApi | undefined, onButtonClick?: (api: CarouselApi) => void): UseDotButtonType {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
     const onDotButtonClick = useCallback(
         (index: number) => {
-            if (!emblaApi) return;
-            emblaApi.scrollTo(index);
-            onButtonClick?.(emblaApi);
+            if (!api) return;
+            api.scrollTo(index);
+            onButtonClick?.(api);
         },
-        [emblaApi, onButtonClick]
+        [api, onButtonClick]
     );
 
-    const onInit = useCallback((emblaApi: EmblaCarouselType) => setScrollSnaps(emblaApi.scrollSnapList()), []);
-    const onSelect = useCallback((emblaApi: EmblaCarouselType) => setSelectedIndex(emblaApi.selectedScrollSnap()), []);
+    const onInit = useCallback((api: CarouselApi) => setScrollSnaps(api.scrollSnapList()), []);
+    const onSelect = useCallback((api: CarouselApi) => setSelectedIndex(api.selectedScrollSnap()), []);
 
     useEffect(
         () => {
-            if (!emblaApi) return;
-            onInit(emblaApi);
-            onSelect(emblaApi);
-            emblaApi.on('reInit', onInit);
-            emblaApi.on('reInit', onSelect);
-            emblaApi.on('select', onSelect);
-        }, [emblaApi, onInit, onSelect]
+            if (!api) return;
+            onInit(api);
+            onSelect(api);
+            api.on('reInit', onInit);
+            api.on('reInit', onSelect);
+            api.on('select', onSelect);
+        }, [api, onInit, onSelect]
     );
 
     return {

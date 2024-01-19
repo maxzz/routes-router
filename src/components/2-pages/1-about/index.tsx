@@ -1,10 +1,9 @@
-import { EmblaOptionsType } from "embla-carousel";
-import EmblaCarousel from "@/ui/carousel/EmblaCarousel";
+import { CatouselOptions, EmblaCarousel } from "@/ui/carousel";
 import { Link } from "react-router-dom";
+import { allImages } from "./images/imageByIndex";
 
-const OPTIONS: EmblaOptionsType = { loop: true };
+const OPTIONS: CatouselOptions = { loop: true };
 const SLIDE_COUNT = 4;
-const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
 
 export function About() {
     return (
@@ -13,7 +12,7 @@ export function About() {
                 About
                 <Link to="/">Back</Link>
 
-                <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+                <EmblaCarousel slides={allImages} options={OPTIONS} />
             </div>
         </div>
     );

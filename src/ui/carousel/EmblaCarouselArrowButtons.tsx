@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps, PropsWithChildren, useCallback, useEffect, useState } from 'react';
-import { EmblaCarouselType } from 'embla-carousel';
+import { EmblaCarouselType as CarouselApi } from 'embla-carousel';
 
 type UsePrevNextButtonsType = {
     prevBtnDisabled: boolean;
@@ -8,40 +8,40 @@ type UsePrevNextButtonsType = {
     onNextButtonClick: () => void;
 };
 
-export const usePrevNextButtons = (emblaApi: EmblaCarouselType | undefined, onButtonClick?: (emblaApi: EmblaCarouselType) => void): UsePrevNextButtonsType => {
+export const usePrevNextButtons = (api: CarouselApi | undefined, onButtonClick?: (api: CarouselApi) => void): UsePrevNextButtonsType => {
     const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
     const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
 
     const onPrevButtonClick = useCallback(
         () => {
-            if (!emblaApi) return;
-            emblaApi.scrollPrev();
-            onButtonClick?.(emblaApi);
-        }, [emblaApi, onButtonClick]
+            if (!api) return;
+            api.scrollPrev();
+            onButtonClick?.(api);
+        }, [api, onButtonClick]
     );
 
     const onNextButtonClick = useCallback(
         () => {
-            if (!emblaApi) return;
-            emblaApi.scrollNext();
-            onButtonClick?.(emblaApi);
-        }, [emblaApi, onButtonClick]
+            if (!api) return;
+            api.scrollNext();
+            onButtonClick?.(api);
+        }, [api, onButtonClick]
     );
 
     const onSelect = useCallback(
-        (emblaApi: EmblaCarouselType) => {
-            setPrevBtnDisabled(!emblaApi.canScrollPrev());
-            setNextBtnDisabled(!emblaApi.canScrollNext());
+        (api: CarouselApi) => {
+            setPrevBtnDisabled(!api.canScrollPrev());
+            setNextBtnDisabled(!api.canScrollNext());
         }, []
     );
 
     useEffect(
         () => {
-            if (!emblaApi) return;
-            onSelect(emblaApi);
-            emblaApi.on('reInit', onSelect);
-            emblaApi.on('select', onSelect);
-        }, [emblaApi, onSelect]
+            if (!api) return;
+            onSelect(api);
+            api.on('reInit', onSelect);
+            api.on('select', onSelect);
+        }, [api, onSelect]
     );
 
     return {
