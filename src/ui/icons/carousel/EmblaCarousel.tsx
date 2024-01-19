@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
+import Autoplay, { AutoplayType } from 'embla-carousel-autoplay';
 import { DotButton, useDotButton } from './EmblaCarouselDotButton';
 import { PrevButton, NextButton, usePrevNextButtons } from './EmblaCarouselArrowButtons';
 import { imageByIndex } from './images/imageByIndex';
@@ -20,11 +20,8 @@ function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
     const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()]);
 
     const onButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
-        const { autoplay } = emblaApi.plugins() as any;
-        if (!autoplay) {
-            return;
-        }
-        if (autoplay.options.stopOnInteraction !== false) {
+        const { autoplay } = emblaApi.plugins()['autoplay'] as AutoplayType;
+        if (autoplay?.options.stopOnInteraction) {
             autoplay.stop();
         }
     }, []);
@@ -62,11 +59,11 @@ function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
                 <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
             </div>
 
-            <div className="absolute left-0 right-0 bottom-6 text-red-500 flex items-center justify-center z-10"> {/* embla__dots */}
+            <div className="absolute left-0 right-0 bottom-8 text-red-500 flex items-center justify-center gap-x-1 z-10"> {/* embla__dots */}
                 {scrollSnaps.map((_, index) => (
                     <DotButton
                         className={classNames(
-                            'mx-0.5 my-4 w-6 h-1 inline-flex items-center rounded', // 'embla__dot'
+                            'w-6 h-1 inline-flex items-center rounded', // 'embla__dot'
                             index === selectedIndex ? 'bg-sky-500' : 'bg-sky-100' // 'embla__dot--selected'
                         )}
                         onClick={() => onDotButtonClick(index)}
