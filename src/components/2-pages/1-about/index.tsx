@@ -3,7 +3,7 @@ import EmblaCarousel from "@/ui/icons/carousel/EmblaCarousel";
 import { Link } from "react-router-dom";
 
 const OPTIONS: EmblaOptionsType = { loop: true };
-const SLIDE_COUNT = 5;
+const SLIDE_COUNT = 4;
 const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
 
 export function About() {
