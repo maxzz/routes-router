@@ -134,14 +134,18 @@
     cursor: pointer;
 
     display: inline-flex;
-}
+
+    --background-site: rgb(249, 249, 249);
+    --brand-primary: rgb(47, 112, 193);
+    --brand-secondary: rgb(116, 97, 195);
+  }
 
 .embla__dot {
     margin-left: 0.75rem;
     margin-right: 0.75rem;
     width: 2.4rem;
     height: 2.4rem;
-    
+
     display: flex;
     align-items: center;
 }
@@ -155,7 +159,5 @@
 }
 
 .embla__dot--selected:after {
-    background: linear-gradient(45deg,
-            var(--brand-primary),
-            var(--brand-secondary));
+    background: linear-gradient(45deg, var(--brand-primary), var(--brand-secondary));
 }
