@@ -66,10 +66,9 @@ function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
                 {scrollSnaps.map((_, index) => (
                     <DotButton
                         className={classNames(
-                            'embla__dot',
-                            index === selectedIndex ? ' embla__dot--selected' : ''
+                            'mx-0.5 my-4 w-6 h-1 inline-flex items-center rounded', // 'embla__dot'
+                            index === selectedIndex ? 'bg-sky-500' : 'bg-sky-100' // 'embla__dot--selected'
                         )}
-                        // className={'embla__dot'.concat(index === selectedIndex ? ' embla__dot--selected' : '')}
                         onClick={() => onDotButtonClick(index)}
                         key={index}
                     />

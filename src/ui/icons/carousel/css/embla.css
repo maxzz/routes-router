@@ -122,7 +122,7 @@
     z-index: 1;
 } */
 
-.embla__dot {
+/* .embla__dot {
     appearance: none;
     margin: 0;
     padding: 0;
@@ -160,4 +160,4 @@
 
 .embla__dot--selected:after {
     background: linear-gradient(45deg, var(--brand-primary), var(--brand-secondary));
-}
+} */

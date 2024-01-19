@@ -1,6 +1,16 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps, PropsWithChildren, useCallback, useEffect, useState } from 'react';
 import { EmblaCarouselType } from 'embla-carousel';
 
+type DotButtonProps = PropsWithChildren<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>>;
+
+export function DotButton({ children, ...rest }: DotButtonProps) {
+    return (
+        <button type="button" {...rest}>
+            {children}
+        </button>
+    );
+}
+
 type UseDotButtonType = {
     selectedIndex: number;
     scrollSnaps: number[];
@@ -39,14 +49,4 @@ export function useDotButton(emblaApi: EmblaCarouselType | undefined, onButtonCl
         scrollSnaps,
         onDotButtonClick
     };
-}
-
-type DotButtonProps = PropsWithChildren<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>>;
-
-export function DotButton({ children, ...rest }: DotButtonProps) {
-    return (
-        <button type="button" {...rest}>
-            {children}
-        </button>
-    );
 }
