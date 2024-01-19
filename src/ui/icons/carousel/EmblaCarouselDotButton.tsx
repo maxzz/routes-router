@@ -1,13 +1,13 @@
-import React, { PropsWithChildren, useCallback, useEffect, useState } from 'react';
+import { ButtonHTMLAttributes, DetailedHTMLProps, PropsWithChildren, useCallback, useEffect, useState } from 'react';
 import { EmblaCarouselType } from 'embla-carousel';
 
-type UseDotButtonType = {
+type UseDotButtonProps = {
     selectedIndex: number;
     scrollSnaps: number[];
     onDotButtonClick: (index: number) => void;
 };
 
-export const useDotButton = (emblaApi: EmblaCarouselType | undefined, onButtonClick?: (emblaApi: EmblaCarouselType) => void): UseDotButtonType => {
+export function useDotButton(emblaApi: EmblaCarouselType | undefined, onButtonClick?: (emblaApi: EmblaCarouselType) => void): UseDotButtonProps {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
@@ -24,20 +24,14 @@ export const useDotButton = (emblaApi: EmblaCarouselType | undefined, onButtonCl
         [emblaApi, onButtonClick]
     );
 
-    const onInit = useCallback((emblaApi: EmblaCarouselType) => {
-        setScrollSnaps(emblaApi.scrollSnapList());
-    }, []);
-
-    const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
-        setSelectedIndex(emblaApi.selectedScrollSnap());
-    }, []);
+    const onInit = useCallback((emblaApi: EmblaCarouselType) => setScrollSnaps(emblaApi.scrollSnapList()), []);
+    const onSelect = useCallback((emblaApi: EmblaCarouselType) => setSelectedIndex(emblaApi.selectedScrollSnap()), []);
 
     useEffect(
         () => {
             if (!emblaApi) {
                 return;
             }
-
             onInit(emblaApi);
             onSelect(emblaApi);
             emblaApi.on('reInit', onInit);
@@ -51,20 +45,14 @@ export const useDotButton = (emblaApi: EmblaCarouselType | undefined, onButtonCl
         scrollSnaps,
         onDotButtonClick
     };
-};
+}
 
-type PropType = PropsWithChildren<
-    React.DetailedHTMLProps<
-        React.ButtonHTMLAttributes<HTMLButtonElement>,
-        HTMLButtonElement
-    >
->;
+type DotButtonProps = PropsWithChildren<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>>;
 
-export const DotButton: React.FC<PropType> = (props) => {
-    const { children, ...rest } = props;
+export function DotButton({ children, ...rest }: DotButtonProps) {
     return (
         <button type="button" {...rest}>
             {children}
         </button>
     );
-};
+}
