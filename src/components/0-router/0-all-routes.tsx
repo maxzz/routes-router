@@ -16,6 +16,12 @@ export type RouteType = Prettify<
 
 export const routes: RouteType[] = [
     {
+        name: "home",
+        path: "/",
+        element: <div className="">Home</div>,
+        nodeRef: createRef(),
+    },
+    {
         name: "about",
         path: "/about",
         element: <About />,
