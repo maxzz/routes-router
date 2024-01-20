@@ -1,7 +1,8 @@
-import { Outlet, useLocation, useOutlet } from "react-router-dom";
+import { useLocation, useOutlet } from "react-router-dom";
 import { SwitchTransition, CSSTransition, TransitionStatus } from "react-transition-group";
 import { Header } from "../1-header";
 import { RouteType } from "./0-all-routes";
+import "./transitions-page.css";
 
 function AnimatedOutlet({ routes }: { routes: RouteType[]; }) {
     const currentOutlet = useOutlet();
@@ -53,7 +54,7 @@ export function Root({ routes }: { routes: RouteType[]; }) {
         <div className="h-screen bg-sky-300">
             <div className="w-full h-full grid grid-rows-[auto,1fr]">
                 <Header />
-                <div className="bg-sky-200">
+                <div className="relative bg-sky-200">
                     <AnimatedOutlet routes={routes} />
                     {/* <Outlet /> */}
                 </div>
@@ -61,17 +62,3 @@ export function Root({ routes }: { routes: RouteType[]; }) {
         </div>
     );
 }
-
-// wo/ useOutlet
-// export function Root() {
-//     return (
-//         <div className="h-screen bg-sky-300">
-//             <div className="w-full h-full grid grid-rows-[auto,1fr]">
-//                 <Header />
-//                 <div className="bg-sky-200">
-//                     <Outlet />
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// }
