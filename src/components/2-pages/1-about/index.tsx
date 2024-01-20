@@ -2,18 +2,15 @@ import { CatouselOptions, EmblaCarousel } from "@/ui/carousel";
 import { Link } from "react-router-dom";
 import { allImages } from "./images/imageByIndex";
 
-const OPTIONS: CatouselOptions = { loop: true };
-const SLIDE_COUNT = 4;
-
 export function About() {
     return (
-        <div className="px-4 h-full bg-slate-500 flex items-center justify-between">
-            <div className="">
+        <div className="p-4 h-full bg-slate-500 grid grid-rows-[auto,1fr]">
+            <div className="flex items-center justify-between">
                 About
-                <Link to="/">Back</Link>
-
-                <EmblaCarousel slides={allImages} options={OPTIONS} />
+                <Link to="/" className="px-3 py-2 border-slate-700/50 border rounded">Back</Link>
             </div>
+
+            <EmblaCarousel slides={allImages} options={{ loop: true }} />
         </div>
     );
 }

@@ -26,7 +26,7 @@ export function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
     const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } = usePrevNextButtons(api, onButtonClick);
 
     return (
-        <div className="relative p-6 [--slide-spacing:1rem] [--slide-size:100%] [--slide-height:19rem] text-gray-400/70">
+        <div className="relative p-6 h-[var(--slide-height)] [--slide-spacing:1rem] [--slide-size:100%] [--slide-height:19rem] text-gray-400/70">
             <div className="overflow-hidden" ref={emblaRef}>
                 <div className="ml-[calc(var(--slide-spacing)*-1)] flex [backface-visibility:hidden] [touch-action:pan-y]">
                     {slides.map((imgSrc, index) => (
@@ -53,7 +53,7 @@ export function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
                 </button>
             </div>
 
-            <div className="absolute left-0 right-0 bottom-8 text-red-500 flex items-center justify-center gap-x-1 z-10">
+            <div className="absolute left-0 right-0 -bottom-4 text-red-500 flex items-center justify-center gap-x-1 z-10">
                 {scrollSnaps.map((_, index) => (
                     <button
                         className={classNames(
