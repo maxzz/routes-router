@@ -1,11 +1,11 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, PropsWithChildren, useCallback } from 'react';
+import { useCallback } from 'react';
 import { EmblaOptionsType, EmblaCarouselType as CarouselApi } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay, { AutoplayType } from 'embla-carousel-autoplay';
-import { classNames } from '@/utils/classnames';
 import { useDotButton } from './carousel-use-dots';
 import { usePrevNextButtons } from './carousel-use-prev-next';
 import { IconPrev, IconNext } from '../icons';
+import { classNames } from '@/utils/classnames';
 
 type EmblaCarouselProps = {
     slides: string[];
@@ -73,6 +73,7 @@ export function imageUrlByIndex<T>(arr: T[], idx: number): T {
     return arr[idx % arr.length];
 }
 
+// import { ButtonHTMLAttributes, DetailedHTMLProps, PropsWithChildren, useCallback } from 'react';
 // type ButtonProps = PropsWithChildren<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>>;
 // export function NavButton({ children, ...rest }: ButtonProps) {
 //     return (
