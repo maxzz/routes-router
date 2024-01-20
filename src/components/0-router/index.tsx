@@ -1,13 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Root } from "./root";
-import { About, Books, Contacts } from "../2-pages";
-import { ErrorPage } from "../9-error";
-
-const routes = [
-    { path: "/about", element: <About /> },
-    { path: "/books", element: <Books /> },
-    { path: "/contact", element: <Contacts /> },
-];
+import { routes } from "./0-all-routes";
+import { Root } from "./1-root";
+import { ErrorPage } from "./2-error-page-404";
 
 export const router = createBrowserRouter([{
     path: "/",
