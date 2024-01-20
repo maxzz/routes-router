@@ -1,15 +1,36 @@
-import { ReactNode, RefObject } from "react";
+import { ReactNode, RefObject, createRef } from "react";
 import { About, Books, Contacts } from "../2-pages";
 
-export type RouteType = {
-    path: string;
+export type RouteTypeWithTransition = {
     name: string;
-    element: ReactNode;
     nodeRef: RefObject<HTMLDivElement>;
 };
 
-export const routes = [
-    { path: "/about", element: <About /> },
-    { path: "/books", element: <Books /> },
-    { path: "/contact", element: <Contacts /> },
+export type RouteType = Prettify<
+    & {
+        path: string;
+        element: ReactNode;
+    }
+    & RouteTypeWithTransition
+>;
+
+export const routes: RouteType[] = [
+    {
+        name: "about",
+        path: "/about",
+        element: <About />,
+        nodeRef: createRef(),
+    },
+    {
+        name: "books",
+        path: "/books",
+        element: <Books />,
+        nodeRef: createRef(),
+    },
+    {
+        name: "contact",
+        path: "/contact",
+        element: <Contacts />,
+        nodeRef: createRef(),
+    },
 ];
