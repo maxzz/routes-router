@@ -45,17 +45,17 @@ export function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
             </div>
 
             <div className="absolute left-6 top-1/2 -translate-y-1/2 flex items-center">
-                <NavButton onClick={onPrevButtonClick} disabled={prevBtnDisabled}>
+                <button onClick={onPrevButtonClick} disabled={prevBtnDisabled}>
                     <IconPrev className="w-8 h-8 fill-current" />
-                </NavButton>
-                <NavButton onClick={onNextButtonClick} disabled={nextBtnDisabled}>
+                </button>
+                <button onClick={onNextButtonClick} disabled={nextBtnDisabled}>
                     <IconNext className="w-8 h-8 fill-current" />
-                </NavButton>
+                </button>
             </div>
 
             <div className="absolute left-0 right-0 bottom-8 text-red-500 flex items-center justify-center gap-x-1 z-10">
                 {scrollSnaps.map((_, index) => (
-                    <NavButton
+                    <button
                         className={classNames(
                             'w-6 h-1 inline-flex items-center rounded',
                             index === selectedIndex ? 'bg-sky-500' : 'bg-sky-100'
@@ -73,12 +73,11 @@ export function imageUrlByIndex<T>(arr: T[], idx: number): T {
     return arr[idx % arr.length];
 }
 
-type ButtonProps = PropsWithChildren<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>>;
-
-export function NavButton({ children, ...rest }: ButtonProps) {
-    return (
-        <button className="" type="button" {...rest}>
-            {children}
-        </button>
-    );
-}
+// type ButtonProps = PropsWithChildren<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>>;
+// export function NavButton({ children, ...rest }: ButtonProps) {
+//     return (
+//         <button type="button" {...rest}>
+//             {children}
+//         </button>
+//     );
+// }
