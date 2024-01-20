@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { HTMLAttributes, useCallback } from 'react';
 import { EmblaOptionsType, EmblaCarouselType as CarouselApi } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay, { AutoplayType } from 'embla-carousel-autoplay';
@@ -7,26 +7,28 @@ import { usePrevNextButtons } from './carousel-use-prev-next';
 import { IconPrev, IconNext } from '../icons';
 import { classNames } from '@/utils/classnames';
 
-type EmblaCarouselProps = {
+type CarouselProps = {
     slides: string[];
     options?: EmblaOptionsType;
 };
 
-export function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
+export function Carousel({ slides, options, className, ...rest }: CarouselProps & HTMLAttributes<HTMLDivElement>) {
     const [emblaRef, api] = useEmblaCarousel(options, [Autoplay({ stopOnInteraction: false, delay: 5000 })]);
 
-    const onButtonClick = useCallback((api: CarouselApi) => {
-        const { autoplay } = api.plugins() as AutoplayType;
-        if (autoplay?.options.stopOnInteraction) {
-            autoplay.stop();
-        }
-    }, []);
+    const onButtonClick = useCallback(
+        (api: CarouselApi) => {
+            const { autoplay } = api.plugins() as AutoplayType;
+            if (autoplay?.options.stopOnInteraction) {
+                autoplay.stop();
+            }
+        }, []
+    );
 
     const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(api, onButtonClick);
     const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } = usePrevNextButtons(api, onButtonClick);
 
     return (
-        <div className="relative p-6 h-[var(--slide-height)] [--slide-spacing:1rem] [--slide-size:100%] [--slide-height:19rem] text-gray-400/70">
+        <div className={classNames("relative h-[var(--slide-height)] [--slide-spacing:1rem] [--slide-size:100%] [--slide-height:19rem] text-gray-400/70", className)} {...rest}>
             <div className="overflow-hidden" ref={emblaRef}>
                 <div className="ml-[calc(var(--slide-spacing)*-1)] flex [backface-visibility:hidden] [touch-action:pan-y]">
                     {slides.map((imgSrc, index) => (
