@@ -18,7 +18,7 @@ export const routes: RouteType[] = [
     {
         name: "home",
         path: "/",
-        element: <div className="">Home</div>,
+        element: <div className="h-full bg-sky-200">Home</div>,
         nodeRef: createRef(),
     },
     {

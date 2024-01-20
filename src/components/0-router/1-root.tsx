@@ -54,7 +54,7 @@ export function Root({ routes }: { routes: RouteType[]; }) {
         <div className="h-screen bg-sky-300">
             <div className="w-full h-full grid grid-rows-[auto,1fr]">
                 <Header />
-                <div className="relative bg-sky-200">
+                <div className="relative">
                     <AnimatedOutlet routes={routes} />
                     {/* <Outlet /> */}
                 </div>
