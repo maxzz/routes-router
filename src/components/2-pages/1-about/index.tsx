@@ -4,13 +4,15 @@ import { allImages } from "./images/imageByIndex";
 
 export function About() {
     return (
-        <div className="p-4 h-full bg-slate-500 grid grid-rows-[auto,1fr]">
+        <div className="p-4 h-full bg-sky-800 grid grid-rows-[auto,1fr]">
             <div className="flex items-center justify-between">
                 About
-                <Link to="/" className="px-3 py-2 border-slate-700/50 border rounded">Back</Link>
+                <Link to="/" className="px-3 py-2 bg-sky-800 hover:bg-sky-700 border-sky-700 border rounded shadow active:scale-[.97]">Back</Link>
             </div>
 
-            <EmblaCarousel slides={allImages} options={{ loop: true }} />
+            <div className="self-center">
+                <EmblaCarousel slides={allImages} options={{ loop: true }} />
+            </div>
         </div>
     );
 }

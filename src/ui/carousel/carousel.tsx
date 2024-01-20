@@ -13,7 +13,7 @@ type EmblaCarouselProps = {
 };
 
 export function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
-    const [emblaRef, api] = useEmblaCarousel(options, [Autoplay({ stopOnInteraction: true, delay: 25000 })]);
+    const [emblaRef, api] = useEmblaCarousel(options, [Autoplay({ stopOnInteraction: false, delay: 5000 })]);
 
     const onButtonClick = useCallback((api: CarouselApi) => {
         const { autoplay } = api.plugins() as AutoplayType;
@@ -31,9 +31,11 @@ export function EmblaCarousel({ slides, options }: EmblaCarouselProps) {
                 <div className="ml-[calc(var(--slide-spacing)*-1)] flex [backface-visibility:hidden] [touch-action:pan-y]">
                     {slides.map((imgSrc, index) => (
                         <div className="relative pl-[var(--slide-spacing)] min-w-0 [flex:_0_0_var(--slide-size)]" key={index}>
+
                             <div className="absolute right-4 top-4 w-12 h-12 leading-[2.8rem] font-extrabold text-center bg-gray-300/30 rounded-full">
                                 <span>{index + 1}</span>
                             </div>
+
                             <img
                                 className="block w-full h-[var(--slide-height)] object-cover"
                                 src={imageUrlByIndex(slides, index)}
