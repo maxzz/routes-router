@@ -51,7 +51,7 @@ function traceState(path: string, state: string): undefined {
 export function Root({ routes }: { routes: RouteType[]; }) {
     const currentOutlet = useOutlet();
     return (
-        <div className="h-screen bg-sky-300">
+        <div className="h-screen bg-sky-800">
             <div className="w-full h-full grid grid-rows-[auto,1fr]">
                 <Header />
                 <div className="relative">
