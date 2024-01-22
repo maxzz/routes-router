@@ -1,6 +1,6 @@
 import { ReactNode, RefObject, createRef } from "react";
 import { About, Books, Contacts } from "../2-pages";
-import { HomePage } from "./3-home";
+import { HomePage } from "./2-home";
 
 export type RouteTypeWithTransition = {
     name: string;
