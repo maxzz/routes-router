@@ -1,5 +1,6 @@
 import { ReactNode, RefObject, createRef } from "react";
 import { About, Books, Contacts } from "../2-pages";
+import { HomePage } from "./3-home";
 
 export type RouteTypeWithTransition = {
     name: string;
@@ -18,7 +19,7 @@ export const routes: RouteType[] = [
     {
         name: "home",
         path: "/",
-        element: <div className="h-full bg-sky-200">Home</div>,
+        element: <HomePage />,
         nodeRef: createRef(),
     },
     {

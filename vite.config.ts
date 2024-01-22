@@ -3,7 +3,8 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+    // base: command === 'build' ? '/routes-router/' : '',
     base: '',
     plugins: [react()],
     server: {
@@ -14,4 +15,4 @@ export default defineConfig({
             '@': path.resolve(__dirname, './src'),
         },
     },
-});
+}));
