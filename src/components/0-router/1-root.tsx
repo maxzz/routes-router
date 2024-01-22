@@ -3,6 +3,7 @@ import { SwitchTransition, CSSTransition, TransitionStatus } from "react-transit
 import { Header } from "../1-header";
 import { RouteType } from "./0-all-routes";
 import "./transitions-page.css";
+import { Footer } from "../3-footer";
 
 function AnimatedOutlet({ routes }: { routes: RouteType[]; }) {
     const currentOutlet = useOutlet();
@@ -58,6 +59,7 @@ export function Root({ routes }: { routes: RouteType[]; }) {
                     <AnimatedOutlet routes={routes} />
                     {/* <Outlet /> */}
                 </div>
+                <Footer />
             </div>
         </div>
     );
