@@ -41,6 +41,10 @@ export function Footer({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
                 <a className={anchorClasses} href={isDev ? "/" : "https://maxzz.github.io/routes-router/"}>./routes-router</a>
             </div>
 
+            <div className="-ml-6 px-4 py-3 text-xs text-sky-300/70">
+                <a className={anchorClasses} href={isDev ? "/" : "https://maxzz.github.io/routes-tan-router/"}>./routes-tan-router</a>
+            </div>
+
         </div>
     );
 }
